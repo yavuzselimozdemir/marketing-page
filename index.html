@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yavuz Selim Özdemir</title>
+    <title>TÜGVA Yurt Başvuru Formu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,257 +13,539 @@
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #0a0f1c;
-            color: white;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .bg-animation {
+        /* Dynamic background */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 30%, #2d4a6b 70%, #00b4d8 100%);
+        }
+
+        .bg-grid {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #0a0f1c, #1e293b, #0f172a);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -2;
+            background-image: 
+                linear-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
         }
 
-        .particles {
+        .floating-orbs {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
         }
 
-        .particle {
+        .orb {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #06b6d4;
             border-radius: 50%;
-            animation: float 20s infinite linear;
-            opacity: 0.6;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 180, 216, 0.3), rgba(0, 119, 182, 0.1));
+            filter: blur(1px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .orb:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 20%;
+            animation-delay: 3s;
+        }
+
+        .orb:nth-child(3) {
+            width: 160px;
+            height: 160px;
+            top: 40%;
+            left: 70%;
+            animation-delay: 6s;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(1.1); opacity: 0.6; }
         }
 
-        .main-container {
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header {
             text-align: center;
-            max-width: 500px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
+            margin-bottom: 50px;
+            position: relative;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .logo-container {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 20px;
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 300;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-transform: uppercase;
+            position: relative;
+            font-family: 'Inter', sans-serif;
         }
 
-        .highlight {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00b4d8, transparent);
         }
 
         .subtitle {
+            color: rgba(255, 255, 255, 0.8);
             font-size: 1.1rem;
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            font-weight: 300;
+            font-weight: 400;
+            margin-top: 30px;
+            letter-spacing: 1px;
         }
 
-        .status-badge {
-            display: inline-flex;
+        .tagline {
+            color: rgba(0, 180, 216, 0.9);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: slideUp 1s ease-out;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1), rgba(0, 119, 182, 0.05));
+            padding: 30px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .card-title {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            color: rgba(0, 255, 136, 0.8);
+            font-weight: 500;
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
-            background: #06b6d4;
+            background: #00ff88;
             border-radius: 50%;
-            animation: blink 2s ease-in-out infinite;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
-        .contact-info {
-            font-size: 0.95rem;
-            color: #64748b;
-            line-height: 1.6;
+        .form-container {
+            padding: 50px 40px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
-        .contact-info a {
-            color: #06b6d4;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            border-bottom-color: #06b6d4;
-        }
-
-        .coming-soon {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            color: #475569;
+        .embed-placeholder {
             text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            width: 100%;
         }
 
-        @media (max-width: 640px) {
-            .main-container {
-                padding: 1rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
+        .embed-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transform: perspective(1000px) rotateX(15deg);
+            box-shadow: 
+                0 20px 40px rgba(0, 180, 216, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .embed-icon::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.5), rgba(0, 119, 182, 0.3));
+            border-radius: 22px;
+            z-index: -1;
+            filter: blur(4px);
+        }
+
+        .embed-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .embed-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .embed-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00b4d8, #00ff88);
+            width: 0%;
+            animation: progressFill 3s ease-out infinite;
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            70% { width: 100%; }
+            100% { width: 100%; }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00b4d8;
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #00b4d8;
+            transform: translateY(-2px);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Subtle hover effects */
+        .main-card:hover {
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .main-card:hover .progress-bar {
+            animation-duration: 1.5s;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
             }
             
             .logo {
-                width: 60px;
-                height: 60px;
-                font-size: 18px;
+                font-size: 2.2rem;
+                letter-spacing: 4px;
             }
+            
+            .main-card {
+                margin: 0 10px;
+            }
+            
+            .card-header,
+            .form-container {
+                padding: 30px 25px;
+            }
+
+            .footer-links {
+                gap: 20px;
+                flex-direction: column;
+            }
+
+            .status-indicator {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin-top: 15px;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Micro-interactions */
+        .embed-icon {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-card:hover .embed-icon {
+            transform: perspective(1000px) rotateX(0deg) scale(1.02);
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
-    <div class="particles">
-        <!-- Particles will be generated by JavaScript -->
-    </div>
-
-    <div class="main-container">
-        <!-- <div class="logo">YSÖ</div> -->
-        
-        <h1>Yavuz Selim <span class="highlight">Özdemir</span></h1>
-        <p class="subtitle">Yazılım Geliştirici</p>
-        
-        <!-- <div class="status-badge">
-            <div class="status-dot"></div>
-            Power Platform & Azure Solutions
-        </div> -->
-        
-        <div class="contact-info">
-            Dynamics 365, Power Apps ve Azure teknolojileri üzerine çalışmaktayım.
-            Yazılım ve kişisel bloglarımın olduğu kapsamlı web sitesi kısa süre içinde yayında.<br><br>
-            
-            <a href="mailto:ysozdemir58@gmail.com" target="_blank">Mail</a> •
-            <a href="https://www.linkedin.com/in/ysozdemir/" target="_blank">LinkedIn</a> •
-            <a href="https://github.com/yavuzselimozdemir//" target="_blank">GitHub</a>
+    <div class="bg-container">
+        <div class="bg-grid"></div>
+        <div class="floating-orbs">
+            <div class="orb"></div>
+            <div class="orb"></div>
+            <div class="orb"></div>
         </div>
     </div>
 
-    <div class="coming-soon">
-        2025
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <h1 class="logo">TÜGVA</h1>
+            </div>
+            <p class="subtitle">Türkiye Gençlik Vakfı</p>
+            <p class="tagline">Geleceğin liderleri burada yetişiyor</p>
+        </div>
+
+        <div class="main-card">
+            <div class="card-header">
+                <h2 class="card-title">Yurt Başvuru Formu</h2>
+                <p class="card-description">
+                    Eğitim hayatınızda yanınızda olmak için başvuru formunuzu doldurun. 
+                    Modern yaşam koşulları ve akademik başarıya odaklı ortamımızda yerinizi alın.
+                </p>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>Başvurular Açık</span>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="embed-placeholder">
+                    <div class="embed-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19M16.5,16.25C16.5,16.81 16.06,17.25 15.5,17.25H8.5C7.94,17.25 7.5,16.81 7.5,16.25V15.75C7.5,15.19 7.94,14.75 8.5,14.75H15.5C16.06,14.75 16.5,15.19 16.5,15.75V16.25M16.5,13.25C16.5,13.81 16.06,14.25 15.5,14.25H8.5C7.94,14.25 7.5,13.81 7.5,13.25V12.75C7.5,12.19 7.94,11.75 8.5,11.75H15.5C16.06,11.75 16.5,12.19 16.5,12.75V13.25M16.5,10.25C16.5,10.81 16.06,11.25 15.5,11.25H8.5C7.94,11.25 7.5,10.81 7.5,10.25V9.75C7.5,9.19 7.94,8.75 8.5,8.75H15.5C16.06,8.75 16.5,9.19 16.5,9.75V10.25M16.5,7.25C16.5,7.81 16.06,8.25 15.5,8.25H8.5C7.94,8.25 7.5,7.81 7.5,7.25V6.75C7.5,6.19 7.94,5.75 8.5,5.75H15.5C16.06,5.75 16.5,6.19 16.5,6.75V7.25Z"/>
+                        </svg>
+                    </div>
+                    <div
+        data-form-id='5dcacdf1-ce37-f011-8c4e-7c1e52211af0'
+        data-form-api-url='https://public-eur.mkt.dynamics.com/api/v1.0/orgs/97c73e55-bfd3-ed11-aed0-000d3a64dc63/landingpageforms'
+        data-cached-form-url='https://assets-eur.mkt.dynamics.com/97c73e55-bfd3-ed11-aed0-000d3a64dc63/digitalassets/forms/5dcacdf1-ce37-f011-8c4e-7c1e52211af0' ></div>
+        <script src = 'https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormLoader/FormLoader.bundle.js' ></script>
+                </div>
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://tugva.org" class="footer-link" target="_blank">Ana Sayfa</a>
+                <a href="https://tugva.org/hakkimizda" class="footer-link" target="_blank">Hakkımızda</a>
+                <a href="https://tugva.org/yurtlar" class="footer-link" target="_blank">Yurtlarımız</a>
+                <a href="https://tugva.org/iletisim" class="footer-link" target="_blank">İletişim</a>
+            </div>
+            <p class="copyright">© 2025 TÜGVA - Türkiye Gençlik Vakfı. Tüm hakları saklıdır.</p>
+        </div>
     </div>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            const particleCount = 50;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Advanced parallax effect for orbs
+            document.addEventListener('mousemove', function(e) {
+                const orbs = document.querySelectorAll('.orb');
+                const x = (e.clientX / window.innerWidth) - 0.5;
+                const y = (e.clientY / window.innerHeight) - 0.5;
+                
+                orbs.forEach((orb, index) => {
+                    const speed = (index + 1) * 15;
+                    const rotateX = y * speed;
+                    const rotateY = x * speed;
+                    orb.style.transform = `translate(${x * speed}px, ${y * speed}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+            });
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+            // Dynamic grid animation speed based on scroll
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', function() {
+                const currentScrollY = window.scrollY;
+                const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+                const grid = document.querySelector('.bg-grid');
                 
-                // Random position
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                const animationSpeed = Math.max(5, 20 - scrollDelta);
+                grid.style.animationDuration = `${animationSpeed}s`;
                 
-                // Random size
-                const size = Math.random() * 3 + 1;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
+                lastScrollY = currentScrollY;
+            });
 
-        createParticles();
+            // Subtle card hover effect
+            const mainCard = document.querySelector('.main-card');
+            mainCard.addEventListener('mousemove', function(e) {
+                // Removed the 3D tilt effect - keeping it stable
+            });
+
+            mainCard.addEventListener('mouseleave', function() {
+                // Removed reset transform
+            });
+
+            // Status indicator interactive effect
+            const statusIndicator = document.querySelector('.status-indicator');
+            setInterval(() => {
+                statusIndicator.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    statusIndicator.style.transform = 'scale(1)';
+                }, 200);
+            }, 3000);
+
+            // Smooth reveal animation for elements
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Add stagger effect to footer links
+            const footerLinks = document.querySelectorAll('.footer-link');
+            footerLinks.forEach((link, index) => {
+                link.style.opacity = '0';
+                link.style.transform = 'translateY(20px)';
+                link.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(link);
+            });
+        });
     </script>
 </body>
 </html>
