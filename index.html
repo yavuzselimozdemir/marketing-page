@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yurt Başvuru - TÜGVA</title>
+    <title>TÜGVA - Geleceğinizi İnşa Edin</title>
     <style>
         * {
             margin: 0;
@@ -11,278 +11,211 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafb;
-            color: #2c3e50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
+            color: #333;
+            background-color: #f8fafc;
         }
 
-        /* Subtle background pattern */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                linear-gradient(135deg, #f8fafb 0%, #e8f4f8 50%, #ddeef2 100%);
-            opacity: 0.8;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .bg-pattern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(52, 152, 219, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 75% 75%, rgba(41, 128, 185, 0.03) 0%, transparent 25%);
-            background-size: 120px 120px;
-        }
-
-        /* Navbar */
+        /* Header & Navigation */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            padding: 0.75rem 0;
             transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 1rem 0;
         }
 
         .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #2c5282;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0f4c75;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease;
-            letter-spacing: -0.01em;
-        }
-
-        .logo:hover {
-            transform: scale(1.02);
-        }
-
-        .logo::before {
-            content: "🎓";
-            margin-right: 0.5rem;
-            font-size: 1.4rem;
+            letter-spacing: 2px;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 0.5rem;
+            gap: 2rem;
         }
 
-        .nav-menu a {
+        .nav-link {
             text-decoration: none;
-            color: #4a5568;
+            color: #333;
             font-weight: 500;
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             position: relative;
-            font-size: 0.95rem;
         }
 
-        .nav-menu a:hover {
-            background: #3498db;
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        .nav-link:hover {
+            color: #0f4c75;
+            background-color: rgba(15, 76, 117, 0.1);
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-        }
-
-        .hamburger:hover {
-            background: rgba(52, 152, 219, 0.1);
+            gap: 3px;
         }
 
         .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: #3498db;
-            margin: 3px 0;
-            transition: 0.3s ease;
-            border-radius: 1px;
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: 0.3s;
+            border-radius: 2px;
         }
 
-        /* Main Content */
-        .main-content {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 0 60px;
-            position: relative;
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
 
-        .form-container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            width: 100%;
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .hero-section {
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+            color: white;
+            padding: 120px 0 80px;
             text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.1s both;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(52, 152, 219, 0.1);
-            border: 1px solid rgba(52, 152, 219, 0.2);
-            color: #2c5282;
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-        }
-
-        .hero-badge::before {
-            content: "✨";
-            font-size: 1rem;
-        }
-
-        .hero-title {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 1.2rem;
-            color: #2c5282;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #718096;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            max-width: 580px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .form-wrapper {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 
-                0 10px 40px rgba(52, 152, 219, 0.08),
-                0 2px 8px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(52, 152, 219, 0.1);
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.8s ease 0.3s both;
         }
 
-        .form-wrapper::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #3498db, #2980b9, #3498db);
-            background-size: 200% 100%;
-            animation: slideGradient 3s ease-in-out infinite;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
 
-        @keyframes slideGradient {
-            0%, 100% { background-position: -200% 0; }
-            50% { background-position: 200% 0; }
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .form-header h2 {
-            color: #2c5282;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-
-        .form-header p {
-            color: #718096;
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .iframe-container {
+        .hero-content {
             position: relative;
-            width: 100%;
-            min-height: 580px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+            z-index: 2;
         }
 
-        .iframe-container iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 580px;
-            border: none;
-            background: transparent;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Loading state */
-        .form-loading {
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0f4c75;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 580px;
-            color: #718096;
+            position: relative;
+            /* Form CSS izolasyonu */
+            isolation: isolate;
+        }
+
+        /* Form container'ı için CSS izolasyon */
+        .form-iframe-container {
+            width: 100%;
+            min-height: 600px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            /* Form stillerini izole et */
+            isolation: isolate;
+            contain: layout style;
+        }
+
+        /* Form embed'i için iframe stilleri */
+        .form-card iframe {
+            width: 100%;
+            min-height: 600px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .form-placeholder {
+            text-align: center;
+            color: #666;
         }
 
         .loading-spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #e2e8f0;
-            border-top: 3px solid #3498db;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0f4c75;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 1rem;
+            margin: 0 auto 2rem;
         }
 
         @keyframes spin {
@@ -290,131 +223,205 @@
             100% { transform: rotate(360deg); }
         }
 
+        .form-loading-text {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
         /* Footer */
         .footer {
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 2.5rem 0 1.5rem;
-            margin-top: 4rem;
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 20px;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-section h3 {
-            color: #2c5282;
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #3282b8;
             font-weight: 600;
-            letter-spacing: -0.01em;
         }
 
-        .footer-links {
+        .footer-column ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
         }
 
-        .footer-links a {
-            color: #718096;
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
             text-decoration: none;
+            transition: color 0.3s ease;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
-            padding: 0.3rem 0;
-            position: relative;
         }
 
-        .footer-links a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 1px;
-            background: #3498db;
-            transition: width 0.3s ease;
+        .footer-column ul li a:hover {
+            color: #3282b8;
         }
 
-        .footer-links a:hover::before {
-            width: 25px;
-        }
-
-        .footer-links a:hover {
-            color: #3498db;
-            padding-left: 0.7rem;
-        }
-
-        .social-links {
+        .social-icons {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
-        .social-links a {
+        .social-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            color: #718096;
+            background: rgba(50, 130, 184, 0.2);
+            border-radius: 50%;
+            color: #3282b8;
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
 
-        .social-links a:hover {
-            background: #3498db;
-            border-color: #3498db;
+        .social-icon:hover {
+            background: #3282b8;
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
         }
 
         .footer-bottom {
-            text-align: center;
+            border-top: 1px solid #333;
             padding-top: 2rem;
-            border-top: 1px solid #e2e8f0;
-            color: #a0aec0;
+            text-align: center;
+            color: #999;
             font-size: 0.9rem;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Ana sayfa stillerini koruma - Form CSS'inden koruma */
+        .navbar,
+        .hero,
+        .form-section > .container,
+        .form-section > .container > h2,
+        .footer {
+            /* Form CSS'inin etkisini önle */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            line-height: 1.6 !important;
         }
 
-        /* Responsive Design */
+        /* Microsoft Dynamics Form için özel CSS izolasyonu */
+        .dynamics-form-isolated {
+            /* Form container'ını izole et */
+            isolation: isolate;
+            contain: layout style;
+        }
+
+        /* Dynamics form CSS override - ana sayfa stillerini koruma */
+        .dynamics-form-isolated * {
+            /* Form CSS'inin ana sayfayı etkilemesini önle */
+            font-family: inherit !important;
+        }
+
+        /* Form stillerini ana tema ile uyumlu hale getir */
+        .dynamics-form-isolated input[type="text"],
+        .dynamics-form-isolated input[type="email"],
+        .dynamics-form-isolated input[type="tel"],
+        .dynamics-form-isolated input[type="date"],
+        .dynamics-form-isolated select {
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 6px !important;
+            padding: 12px 16px !important;
+            font-size: 15px !important;
+            color: #1e293b !important;
+            background: #ffffff !important;
+            transition: all 0.2s ease !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        .dynamics-form-isolated input:focus,
+        .dynamics-form-isolated select:focus {
+            border-color: #0f4c75 !important;
+            box-shadow: 0 0 0 3px rgba(15, 76, 117, 0.1) !important;
+            outline: none !important;
+        }
+
+        .dynamics-form-isolated label {
+            color: #334155 !important;
+            font-weight: 500 !important;
+            font-size: 14px !important;
+            margin-bottom: 6px !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        /* Form butonlarını ana tema ile uyumlu hale getir */
+        .dynamics-form-isolated button,
+        .dynamics-form-isolated input[type="submit"],
+        .dynamics-form-isolated .submitButton {
+            background: #0f4c75 !important;
+            color: #ffffff !important;
+            border: none !important;
+            padding: 14px 32px !important;
+            border-radius: 6px !important;
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        .dynamics-form-isolated button:hover,
+        .dynamics-form-isolated input[type="submit"]:hover,
+        .dynamics-form-isolated .submitButton:hover {
+            background: #0d3c5e !important;
+        }
+
+        /* Checkbox ve radio button stilleri */
+        .dynamics-form-isolated input[type="checkbox"],
+        .dynamics-form-isolated input[type="radio"] {
+            accent-color: #0f4c75 !important;
+        }
+
+        /* Form container stilleri */
+        .dynamics-form-isolated .marketingForm {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+        }
+        .navbar input,
+        .navbar select,
+        .hero input,
+        .hero select,
+        .footer input,
+        .footer select {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            color: #333 !important;
+        }
+
+        /* Ana sayfa button stillerini koru */
+        .navbar button,
+        .hero button,
+        .footer button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
         @media (max-width: 768px) {
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 80px;
+                top: 70px;
                 flex-direction: column;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
+                background-color: white;
                 width: 100%;
                 text-align: center;
-                transition: 0.3s ease;
-                border-top: 1px solid #e2e8f0;
-                padding: 1.5rem 0;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
                 gap: 0;
             }
 
@@ -422,233 +429,203 @@
                 left: 0;
             }
 
-            .nav-menu a {
-                padding: 1rem 2rem;
-                margin: 0.2rem 1rem;
-                width: calc(100% - 2rem);
+            .nav-menu li {
+                margin: 1rem 0;
             }
 
             .hamburger {
                 display: flex;
             }
 
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
+            .hero {
+                padding: 100px 0 60px;
             }
 
-            .hamburger.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .hamburger.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            .hero-title {
-                font-size: 2.4rem;
-            }
-
-            .hero-subtitle {
+            .hero p {
                 font-size: 1.1rem;
             }
 
-            .form-wrapper {
-                padding: 2rem 1.5rem;
-                margin: 0 1rem;
+            .form-section {
+                padding: 60px 0;
             }
 
-            .iframe-container {
-                min-height: 520px;
+            .form-section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
             }
 
-            .iframe-container iframe {
-                min-height: 520px;
+            .form-card {
+                padding: 2rem;
+                min-height: 500px;
             }
 
-            .form-loading {
-                height: 520px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
-            }
-
-            .social-links {
-                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 1rem;
+            .container {
+                padding: 0 15px;
             }
 
-            .hero-title {
+            .hero h1 {
                 font-size: 2rem;
             }
 
-            .form-wrapper {
-                padding: 1.5rem 1rem;
+            .hero p {
+                font-size: 1rem;
             }
 
-            .iframe-container {
-                min-height: 480px;
+            .form-card {
+                padding: 1.5rem;
+                margin: 0 10px;
             }
 
-            .iframe-container iframe {
-                min-height: 480px;
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .form-loading {
-                height: 480px;
+            .social-icons {
+                justify-content: center;
             }
         }
 
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Focus styles */
-        a:focus,
-        button:focus {
-            outline: 2px solid #3498db;
-            outline-offset: 2px;
+        .hero-content {
+            animation: fadeInUp 1s ease 0.2s backwards;
         }
 
-        /* Print styles */
-        @media print {
-            .navbar,
-            .footer {
-                display: none;
-            }
-            
-            .main-content {
-                margin-top: 0;
-                padding-top: 0;
-            }
+        /* Form loading animation */
+        .form-card.loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Background Pattern -->
-    <div class="bg-pattern"></div>
-
-    <!-- Navbar -->
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">TÜGVA</a>
-            <ul class="nav-menu">
-                <li><a href="#anasayfa">Ana Sayfa</a></li>
-                <li><a href="#hakkimizda">Hakkımızda</a></li>
-                <li><a href="#yurtlarimiz">Yurtlarımız</a></li>
-                <li><a href="#basvuru">Başvuru</a></li>
-                <li><a href="#iletisim">İletişim</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">TÜGVA</a>
+                <ul class="nav-menu">
+                    <li><a href="#ana-sayfa" class="nav-link">Ana Sayfa</a></li>
+                    <li><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
+                    <li><a href="#yurtlarimiz" class="nav-link">Yurtlarımız</a></li>
+                    <li><a href="#basvuru" class="nav-link">Başvuru</a></li>
+                    <li><a href="#iletisim" class="nav-link">İletişim</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="form-container">
-            <div class="hero-section">
-                <div class="hero-badge">
-                    Eğitim Hayatınızda Yeni Bir Sayfa
-                </div>
-                <h1 class="hero-title">Geleceğinizi İnşa Edin</h1>
-                <p class="hero-subtitle">
-                    Güvenli, huzurlu ve eğitim odaklı yurt ortamında akademik hedeflerinize ulaşın. 
-                    Kaliteli yaşam standartları ile başarıya giden yolda yanınızdayız.
-                </p>
-            </div>
-
-            <div class="form-wrapper">
-                <div class="form-header">
-                    <h2>Yurt Başvuru Formu</h2>
-                    <p>Başvurunuzu tamamlamak için tüm bilgileri dikkatli bir şekilde doldurunuz</p>
-                </div>
-                
-                <div class="iframe-container">
-                    <div class="form-loading">
-                        <div class="loading-spinner"></div>
-                        <p>Form yükleniyor, lütfen bekleyiniz...</p>
-                    </div>
-                    <!-- Form embed kodu -->
-                    <div
-                        data-form-id='5dcacdf1-ce37-f011-8c4e-7c1e52211af0'
-                        data-form-api-url='https://public-eur.mkt.dynamics.com/api/v1.0/orgs/97c73e55-bfd3-ed11-aed0-000d3a64dc63/landingpageforms'
-                        data-cached-form-url='https://assets-eur.mkt.dynamics.com/97c73e55-bfd3-ed11-aed0-000d3a64dc63/digitalassets/forms/5dcacdf1-ce37-f011-8c4e-7c1e52211af0'>
-                    </div>
-                    <script src='https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormLoader/FormLoader.bundle.js'></script>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero" id="ana-sayfa">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Eğitim Hayatınızda Yeni Bir Sayfa</div>
+                <h1>Geleceğinizi İnşa Edin</h1>
+                <p>Güvenli, huzurlu ve akademik ortamda eğitim hayatınızı sürdürün. Modern yurt imkanlarımız ile başarıya giden yolda yanınızdayız. Kaliteli yaşam alanları, sosyal aktiviteler ve eğitim desteği ile geleceğinizi şekillendirin.</p>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="basvuru">
+        <div class="container">
+            <h2>Yurt Başvuru Formu</h2>
+            <div class="form-card" id="formCard">
+                <div
+        data-form-id='0bc84e2b-a930-f011-8c4e-0022489aeafa'
+        data-form-api-url='https://public-eur.mkt.dynamics.com/api/v1.0/orgs/97c73e55-bfd3-ed11-aed0-000d3a64dc63/landingpageforms'
+        data-cached-form-url='https://assets-eur.mkt.dynamics.com/97c73e55-bfd3-ed11-aed0-000d3a64dc63/digitalassets/forms/0bc84e2b-a930-f011-8c4e-0022489aeafa' ></div>
+        <script src = 'https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormLoader/FormLoader.bundle.js' ></script>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Kurumsal</h3>
-                <ul class="footer-links">
-                    <li><a href="#hakkimizda">Hakkımızda</a></li>
-                    <li><a href="#misyon">Misyon & Vizyon</a></li>
-                    <li><a href="#yonetim">Yönetim</a></li>
-                    <li><a href="#faaliyet">Faaliyet Raporu</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Hizmetlerimiz</h3>
-                <ul class="footer-links">
-                    <li><a href="#yurtlar">Yurtlar</a></li>
-                    <li><a href="#egitim">Eğitim Programları</a></li>
-                    <li><a href="#sosyal">Sosyal Aktiviteler</a></li>
-                    <li><a href="#destek">Öğrenci Desteği</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>İletişim & Destek</h3>
-                <ul class="footer-links">
-                    <li><a href="#iletisim">İletişim</a></li>
-                    <li><a href="#sss">Sık Sorulan Sorular</a></li>
-                    <li><a href="#kvkv">KVKK</a></li>
-                    <li><a href="#gizlilik">Gizlilik Politikası</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Sosyal Medya</h3>
-                <div class="social-links">
-                    <a href="#" title="Facebook" aria-label="Facebook sayfamız">📘</a>
-                    <a href="#" title="Twitter" aria-label="Twitter hesabımız">🐦</a>
-                    <a href="#" title="Instagram" aria-label="Instagram hesabımız">📷</a>
-                    <a href="#" title="LinkedIn" aria-label="LinkedIn sayfamız">💼</a>
-                    <a href="#" title="YouTube" aria-label="YouTube kanalımız">📺</a>
+    <footer class="footer" id="iletisim">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Kurumsal</h3>
+                    <ul>
+                        <li><a href="#hakkimizda">Hakkımızda</a></li>
+                        <li><a href="#misyon-vizyon">Misyon & Vizyon</a></li>
+                        <li><a href="#yonetim">Yönetim</a></li>
+                        <li><a href="#faaliyet-raporu">Faaliyet Raporu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hizmetlerimiz</h3>
+                    <ul>
+                        <li><a href="#yurtlarimiz">Yurtlar</a></li>
+                        <li><a href="#egitim-programlari">Eğitim Programları</a></li>
+                        <li><a href="#sosyal-aktiviteler">Sosyal Aktiviteler</a></li>
+                        <li><a href="#ogrenci-destegi">Öğrenci Desteği</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>İletişim & Destek</h3>
+                    <ul>
+                        <li><a href="#iletisim">İletişim</a></li>
+                        <li><a href="#sss">SSS</a></li>
+                        <li><a href="#kvkk">KVKK</a></li>
+                        <li><a href="#gizlilik-politikasi">Gizlilik Politikası</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Sosyal Medya</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">💼</a>
+                        <a href="#" class="social-icon" aria-label="YouTube">📺</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2025 TÜGVA - Türkiye Gençlik Vakfı. Tüm hakları saklıdır.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TÜGVA. Tüm hakları saklıdır.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu functionality
-        const hamburger = document.querySelector('.hamburger');
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
         const navMenu = document.querySelector('.nav-menu');
 
         hamburger.addEventListener('click', () => {
@@ -656,33 +633,98 @@
             navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
 
-        // Enhanced navbar scroll effect
-        let lastScrollY = window.scrollY;
-        const navbar = document.querySelector('.navbar');
-
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
+        
+            formCard.classList.remove('loading');
             
-            if (currentScrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(52, 152, 219, 0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
+            // Gerçek implementasyonda buraya script eklenir
+            // loadDynamicsFormScript();
+            
+            
+        
+        // Microsoft Dynamics form script'ini yükle (gerçek implementasyon için)
+        function loadDynamicsFormScript() {
+            const script = document.createElement('script');
+            script.src = 'https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormLoader/FormLoader.bundle.js';
+            script.async = true;
+            
+            script.onload = function() {
+                console.log('Microsoft Dynamics form script yüklendi');
+                // Form yüklendikten sonra CSS düzeltmeleri uygula
+                applyFormCSSFixes();
+            };
+            
+            document.head.appendChild(script);
+        }
+        
+        // Form yüklendikten sonra CSS düzeltmeleri
+        function applyFormCSSFixes() {
+            // Form container'ını bul ve CSS sınıfı ekle
+            const formContainer = document.querySelector('[data-form-id]');
+            if (formContainer) {
+                formContainer.classList.add('dynamics-form-isolated');
             }
             
-            lastScrollY = currentScrollY;
+            // Dinamik olarak yüklenen form stillerini override et
+            const dynamicStyleOverride = document.createElement('style');
+            dynamicStyleOverride.innerHTML = `
+                /* Microsoft Dynamics form için özel CSS override */
+                .dynamics-form-isolated {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+                }
+                
+                .dynamics-form-isolated * {
+                    box-sizing: border-box !important;
+                }
+                
+                /* Form input'larını ana sayfa stiline uyarla */
+                .dynamics-form-isolated input[type="text"],
+                .dynamics-form-isolated input[type="email"],
+                .dynamics-form-isolated input[type="tel"],
+                .dynamics-form-isolated select {
+                    border-color: #cbd5e1 !important;
+                    border-radius: 6px !important;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+                }
+                
+                .dynamics-form-isolated input:focus,
+                .dynamics-form-isolated select:focus {
+                    border-color: #0f4c75 !important;
+                    box-shadow: 0 0 0 3px rgba(15, 76, 117, 0.1) !important;
+                }
+                
+                /* Form button'larını ana tema ile uyumlu hale getir */
+                .dynamics-form-isolated button,
+                .dynamics-form-isolated input[type="submit"] {
+                    background-color: #0f4c75 !important;
+                    border-color: #0f4c75 !important;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+                }
+                
+                .dynamics-form-isolated button:hover,
+                .dynamics-form-isolated input[type="submit"]:hover {
+                    background-color: #0d3c5e !important;
+                }
+            `;
+            document.head.appendChild(dynamicStyleOverride);
+        }
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
         });
 
-        // Smooth scrolling for anchor links
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -696,85 +738,22 @@
             });
         });
 
-        // Form loading simulation and cleanup
-        setTimeout(() => {
-            const loadingElement = document.querySelector('.form-loading');
-            if (loadingElement) {
-                loadingElement.style.display = 'none';
-            }
-        }, 2500);
-
-        // Intersection Observer for animations
+        // Add fade-in animation to elements on scroll
         const observerOptions = {
-            threshold: 0.15,
+            threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('fade-in');
                 }
             });
         }, observerOptions);
 
-        // Observe elements for animation
-        document.querySelectorAll('.form-wrapper, .hero-section').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Accessibility: Escape key closes mobile menu
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-
-        // Focus trap for mobile menu
-        navMenu.addEventListener('keydown', (e) => {
-            if (!navMenu.classList.contains('active')) return;
-            
-            const focusableElements = navMenu.querySelectorAll('a');
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
-
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-        });
-
-        // Performance optimization
-        let ticking = false;
-
-        function rafCallback() {
-            // Batch DOM updates here if needed
-            ticking = false;
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(rafCallback);
-                ticking = true;
-            }
-        }
-
-        // Error handling for form load
-        window.addEventListener('error', (e) => {
-            console.warn('Form yükleme hatası:', e);
-            // Fallback handling if needed
-        });
+        // Observe form section
+        observer.observe(document.querySelector('.form-section'));
     </script>
 </body>
 </html>
