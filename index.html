@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TÜGVA - Geleceğinizi İnşa Edin</title>
+    <title>TÜGVA - Türkiye Gençlik Vakfı</title>
     <style>
         * {
             margin: 0;
@@ -11,104 +11,79 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f8fafc;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            background-color: #f8f9fa;
         }
 
         /* Header & Navigation */
-        .navbar {
+        .header {
+            background: linear-gradient(135deg, #08a4d4 0%, #0892c0 100%);
+            box-shadow: 0 4px 15px rgba(8, 164, 212, 0.2);
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 28px;
             font-weight: bold;
-            color: #0f4c75;
+            color: white;
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 35px;
         }
 
-        .nav-link {
+        .nav-menu a {
+            color: white;
             text-decoration: none;
-            color: #333;
             font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
             position: relative;
         }
 
-        .nav-link:hover {
-            color: #0f4c75;
-            background-color: rgba(15, 76, 117, 0.1);
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .hamburger {
+        .mobile-menu-btn {
             display: none;
-            flex-direction: column;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
             cursor: pointer;
-            gap: 3px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+            background: linear-gradient(135deg, #08a4d4 0%, #0892c0 100%);
             color: white;
-            padding: 120px 0 80px;
             text-align: center;
+            padding: 150px 20px 80px;
+            margin-top: 70px;
             position: relative;
             overflow: hidden;
         }
@@ -120,325 +95,241 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
         }
 
         .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
             position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 3.5rem;
+            margin-bottom: 20px;
             font-weight: 700;
-            margin-bottom: 1.5rem;
             letter-spacing: -1px;
         }
 
         .hero p {
             font-size: 1.3rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
+            margin-bottom: 30px;
+            opacity: 0.95;
             line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #08a4d4;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #08a4d4;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(8, 164, 212, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(8, 164, 212, 0.15);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #08a4d4, #0892c0);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: #08a4d4;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
         }
 
         /* Form Section */
         .form-section {
-            padding: 80px 0;
             background: white;
-        }
-
-        .form-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #0f4c75;
-            margin-bottom: 3rem;
-            font-weight: 600;
-        }
-
-        .form-card {
-            background: white;
+            padding: 60px 20px;
             border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            /* Form CSS izolasyonu */
-            isolation: isolate;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin: 60px auto;
+            max-width: 800px;
+            border: 2px solid rgba(8, 164, 212, 0.1);
         }
 
-        /* Form container'ı için CSS izolasyon */
-        .form-iframe-container {
+        .form-container {
             width: 100%;
-            min-height: 600px;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            /* Form stillerini izole et */
-            isolation: isolate;
-            contain: layout style;
+            margin: 0 auto;
         }
 
-        /* Form embed'i için iframe stilleri */
-        .form-card iframe {
+        .form-embed {
             width: 100%;
-            min-height: 600px;
+            min-height: 700px;
             border: none;
-            border-radius: 10px;
-        }
-
-        .form-placeholder {
-            text-align: center;
-            color: #666;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #0f4c75;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 2rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .form-loading-text {
-            font-size: 1.1rem;
-            color: #666;
         }
 
         /* Footer */
         .footer {
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #08a4d4 0%, #0892c0 100%);
             color: white;
-            padding: 60px 0 20px;
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .footer-grid {
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerGrain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.05"/><circle cx="80" cy="80" r="1" fill="white" opacity="0.05"/><circle cx="60" cy="30" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerGrain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
         }
 
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: #3282b8;
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column ul li a {
-            color: #ccc;
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            display: block;
             transition: color 0.3s ease;
-            font-size: 0.95rem;
         }
 
-        .footer-column ul li a:hover {
-            color: #3282b8;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .social-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(50, 130, 184, 0.2);
-            border-radius: 50%;
-            color: #3282b8;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-icon:hover {
-            background: #3282b8;
+        .footer-section a:hover {
             color: white;
-            transform: translateY(-2px);
+            text-decoration: underline;
         }
 
         .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 2rem;
             text-align: center;
-            color: #999;
-            font-size: 0.9rem;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Ana sayfa stillerini koruma - Form CSS'inden koruma */
-        .navbar,
-        .hero,
-        .form-section > .container,
-        .form-section > .container > h2,
-        .footer {
-            /* Form CSS'inin etkisini önle */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-            line-height: 1.6 !important;
-        }
-
-        /* Microsoft Dynamics Form için özel CSS izolasyonu */
-        .dynamics-form-isolated {
-            /* Form container'ını izole et */
-            isolation: isolate;
-            contain: layout style;
-        }
-
-        /* Dynamics form CSS override - ana sayfa stillerini koruma */
-        .dynamics-form-isolated * {
-            /* Form CSS'inin ana sayfayı etkilemesini önle */
-            font-family: inherit !important;
-        }
-
-        /* Form stillerini ana tema ile uyumlu hale getir */
-        .dynamics-form-isolated input[type="text"],
-        .dynamics-form-isolated input[type="email"],
-        .dynamics-form-isolated input[type="tel"],
-        .dynamics-form-isolated input[type="date"],
-        .dynamics-form-isolated select {
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 6px !important;
-            padding: 12px 16px !important;
-            font-size: 15px !important;
-            color: #1e293b !important;
-            background: #ffffff !important;
-            transition: all 0.2s ease !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-        }
-
-        .dynamics-form-isolated input:focus,
-        .dynamics-form-isolated select:focus {
-            border-color: #0f4c75 !important;
-            box-shadow: 0 0 0 3px rgba(15, 76, 117, 0.1) !important;
-            outline: none !important;
-        }
-
-        .dynamics-form-isolated label {
-            color: #334155 !important;
-            font-weight: 500 !important;
-            font-size: 14px !important;
-            margin-bottom: 6px !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-        }
-
-        /* Form butonlarını ana tema ile uyumlu hale getir */
-        .dynamics-form-isolated button,
-        .dynamics-form-isolated input[type="submit"],
-        .dynamics-form-isolated .submitButton {
-            background: #0f4c75 !important;
-            color: #ffffff !important;
-            border: none !important;
-            padding: 14px 32px !important;
-            border-radius: 6px !important;
-            font-size: 15px !important;
-            font-weight: 500 !important;
-            cursor: pointer !important;
-            transition: all 0.2s ease !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-        }
-
-        .dynamics-form-isolated button:hover,
-        .dynamics-form-isolated input[type="submit"]:hover,
-        .dynamics-form-isolated .submitButton:hover {
-            background: #0d3c5e !important;
-        }
-
-        /* Checkbox ve radio button stilleri */
-        .dynamics-form-isolated input[type="checkbox"],
-        .dynamics-form-isolated input[type="radio"] {
-            accent-color: #0f4c75 !important;
-        }
-
-        /* Form container stilleri */
-        .dynamics-form-isolated .marketingForm {
-            background: transparent !important;
-            box-shadow: none !important;
-            border: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-        }
-        .navbar input,
-        .navbar select,
-        .hero input,
-        .hero select,
-        .footer input,
-        .footer select {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-            color: #333 !important;
-        }
-
-        /* Ana sayfa button stillerini koru */
-        .navbar button,
-        .hero button,
-        .footer button {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-        }
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
+                display: none;
                 flex-direction: column;
-                background-color: white;
+                position: absolute;
+                top: 70px;
+                left: 0;
                 width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-                padding: 2rem 0;
-                gap: 0;
+                background: #08a4d4;
+                padding: 20px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             }
 
             .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-menu li {
-                margin: 1rem 0;
-            }
-
-            .hamburger {
                 display: flex;
             }
 
-            .hero {
-                padding: 100px 0 60px;
+            .mobile-menu-btn {
+                display: block;
             }
 
             .hero h1 {
@@ -449,282 +340,122 @@
                 font-size: 1.1rem;
             }
 
-            .form-section {
-                padding: 60px 0;
-            }
-
-            .form-section h2 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-
-            .form-card {
-                padding: 2rem;
-                min-height: 500px;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .hero h1 {
+            .section h2 {
                 font-size: 2rem;
             }
 
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .form-card {
-                padding: 1.5rem;
-                margin: 0 10px;
-            }
-
-            .footer-grid {
+            .cards-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 20px;
             }
 
-            .social-icons {
-                justify-content: center;
+            .form-section {
+                padding: 40px 20px;
+                margin: 40px 0;
             }
-        }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
             }
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        /* Form loading animation */
-        .form-card.loading {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <a href="#" class="logo">TÜGVA</a>
-                <ul class="nav-menu">
-                    <li><a href="#ana-sayfa" class="nav-link">Ana Sayfa</a></li>
-                    <li><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
-                    <li><a href="#yurtlarimiz" class="nav-link">Yurtlarımız</a></li>
-                    <li><a href="#basvuru" class="nav-link">Başvuru</a></li>
-                    <li><a href="#iletisim" class="nav-link">İletişim</a></li>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">TÜGVA</a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#anasayfa">Anasayfa</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#projeler">Projeler</a></li>
+                    <li><a href="#egitim">Eğitim</a></li>
+                    <li><a href="#etkinlikler">Etkinlikler</a></li>
+                    <li><a href="#iletisim">Başvuru</a></li>
                 </ul>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="ana-sayfa">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">Eğitim Hayatınızda Yeni Bir Sayfa</div>
-                <h1>Geleceğinizi İnşa Edin</h1>
-                <p>Güvenli, huzurlu ve akademik ortamda eğitim hayatınızı sürdürün. Modern yurt imkanlarımız ile başarıya giden yolda yanınızdayız. Kaliteli yaşam alanları, sosyal aktiviteler ve eğitim desteği ile geleceğinizi şekillendirin.</p>
-            </div>
+    <section class="hero" id="anasayfa">
+        <div class="hero-content">
+            <h1>Geleceğin Liderleri</h1>
+            <p>Türkiye Gençlik Vakfı olarak, gençlerimizin potansiyelini keşfetmelerine ve topluma değer katmalarına vesile olmayı hedefliyoruz.</p>
+            <a href="#iletisim" class="cta-button">Hemen Başvur</a>
         </div>
     </section>
 
-    <!-- Form Section -->
-    <section class="form-section" id="basvuru">
-        <div class="container">
-            <h2>Yurt Başvuru Formu</h2>
-            <div class="form-card" id="formCard">
-                <div
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Başvuru Formu Section -->
+        <section class="section" id="iletisim">
+            <h2>Başvuru Formu</h2>
+            <p>TÜGVA programlarına katılmak ve bizimle birlikte çalışmak için başvuru formunu doldurun. Sizinle en kısa sürede iletişime geçeceğiz.</p>
+            
+            <div class="form-section">
+                <div class="form-container">
+                    <div
         data-form-id='0bc84e2b-a930-f011-8c4e-0022489aeafa'
         data-form-api-url='https://public-eur.mkt.dynamics.com/api/v1.0/orgs/97c73e55-bfd3-ed11-aed0-000d3a64dc63/landingpageforms'
         data-cached-form-url='https://assets-eur.mkt.dynamics.com/97c73e55-bfd3-ed11-aed0-000d3a64dc63/digitalassets/forms/0bc84e2b-a930-f011-8c4e-0022489aeafa' ></div>
         <script src = 'https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormLoader/FormLoader.bundle.js' ></script>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer" id="iletisim">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>Kurumsal</h3>
-                    <ul>
-                        <li><a href="#hakkimizda">Hakkımızda</a></li>
-                        <li><a href="#misyon-vizyon">Misyon & Vizyon</a></li>
-                        <li><a href="#yonetim">Yönetim</a></li>
-                        <li><a href="#faaliyet-raporu">Faaliyet Raporu</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Hizmetlerimiz</h3>
-                    <ul>
-                        <li><a href="#yurtlarimiz">Yurtlar</a></li>
-                        <li><a href="#egitim-programlari">Eğitim Programları</a></li>
-                        <li><a href="#sosyal-aktiviteler">Sosyal Aktiviteler</a></li>
-                        <li><a href="#ogrenci-destegi">Öğrenci Desteği</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>İletişim & Destek</h3>
-                    <ul>
-                        <li><a href="#iletisim">İletişim</a></li>
-                        <li><a href="#sss">SSS</a></li>
-                        <li><a href="#kvkk">KVKK</a></li>
-                        <li><a href="#gizlilik-politikasi">Gizlilik Politikası</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Sosyal Medya</h3>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Facebook">📘</a>
-                        <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-                        <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn">💼</a>
-                        <a href="#" class="social-icon" aria-label="YouTube">📺</a>
-                    </div>
-                </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TÜGVA</h3>
+                <p>Türkiye Gençlik Vakfı olarak 1996'dan bu yana gençlerimizin gelişimine katkı sağlıyoruz.</p>
+                <p>Adalet, dürüstlük ve toplumsal dayanışma değerleri ile hareket ediyoruz.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 TÜGVA. Tüm hakları saklıdır.</p>
+            <div class="footer-section">
+                <h3>Hızlı Bağlantılar</h3>
+                <a href="#hakkimizda">Hakkımızda</a>
+                <a href="#projeler">Projeler</a>
+                <a href="#egitim">Eğitim Programları</a>
+                <a href="#etkinlikler">Etkinlikler</a>
+                <a href="#iletisim">İletişim</a>
             </div>
+            <div class="footer-section">
+                <h3>İletişim Bilgileri</h3>
+                <p>📧 info@tugva.org.tr</p>
+                <p>📞 +90 (212) 555 0123</p>
+                <p>📍 İstanbul, Türkiye</p>
+            </div>
+            <div class="footer-section">
+                <h3>Sosyal Medya</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TÜGVA - Türkiye Gençlik Vakfı. Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
     <script>
         // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+        mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
-
-        
-            formCard.classList.remove('loading');
-            
-            // Gerçek implementasyonda buraya script eklenir
-            // loadDynamicsFormScript();
-            
-            
-        
-        // Microsoft Dynamics form script'ini yükle (gerçek implementasyon için)
-        function loadDynamicsFormScript() {
-            const script = document.createElement('script');
-            script.src = 'https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormLoader/FormLoader.bundle.js';
-            script.async = true;
-            
-            script.onload = function() {
-                console.log('Microsoft Dynamics form script yüklendi');
-                // Form yüklendikten sonra CSS düzeltmeleri uygula
-                applyFormCSSFixes();
-            };
-            
-            document.head.appendChild(script);
-        }
-        
-        // Form yüklendikten sonra CSS düzeltmeleri
-        function applyFormCSSFixes() {
-            // Form container'ını bul ve CSS sınıfı ekle
-            const formContainer = document.querySelector('[data-form-id]');
-            if (formContainer) {
-                formContainer.classList.add('dynamics-form-isolated');
-            }
-            
-            // Dinamik olarak yüklenen form stillerini override et
-            const dynamicStyleOverride = document.createElement('style');
-            dynamicStyleOverride.innerHTML = `
-                /* Microsoft Dynamics form için özel CSS override */
-                .dynamics-form-isolated {
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-                }
-                
-                .dynamics-form-isolated * {
-                    box-sizing: border-box !important;
-                }
-                
-                /* Form input'larını ana sayfa stiline uyarla */
-                .dynamics-form-isolated input[type="text"],
-                .dynamics-form-isolated input[type="email"],
-                .dynamics-form-isolated input[type="tel"],
-                .dynamics-form-isolated select {
-                    border-color: #cbd5e1 !important;
-                    border-radius: 6px !important;
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-                }
-                
-                .dynamics-form-isolated input:focus,
-                .dynamics-form-isolated select:focus {
-                    border-color: #0f4c75 !important;
-                    box-shadow: 0 0 0 3px rgba(15, 76, 117, 0.1) !important;
-                }
-                
-                /* Form button'larını ana tema ile uyumlu hale getir */
-                .dynamics-form-isolated button,
-                .dynamics-form-isolated input[type="submit"] {
-                    background-color: #0f4c75 !important;
-                    border-color: #0f4c75 !important;
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-                }
-                
-                .dynamics-form-isolated button:hover,
-                .dynamics-form-isolated input[type="submit"]:hover {
-                    background-color: #0d3c5e !important;
-                }
-            `;
-            document.head.appendChild(dynamicStyleOverride);
-        }
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Smooth scroll for anchor links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -735,25 +466,26 @@
                         block: 'start'
                     });
                 }
+                // Close mobile menu if open
+                navMenu.classList.remove('active');
             });
         });
 
-        // Add fade-in animation to elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(8, 164, 212, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #08a4d4 0%, #0892c0 100%)';
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe form section
-        observer.observe(document.querySelector('.form-section'));
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+        });
     </script>
 </body>
 </html>
