@@ -1,8 +1,24 @@
 import { useState } from 'react';
 
+// Proje tipi tanımı
+interface Proje {
+    id: number;
+    baslik: string;
+    kisa_aciklama: string;
+    detay_aciklama: string;
+    icon: string;
+    kategoriler: string[];
+    aktif: boolean;
+    basvuru_url: string;
+    renk: string;
+    populer?: boolean;
+    yeni?: boolean;
+    yakinda?: boolean;
+}
+
 export default function TugvaAnasayfa() {
     // Proje verilerini revize ettim - çoklu kategoriler ve eğitim seviyesi bazlı kategoriler
-    const [projeler] = useState([
+    const [projeler] = useState<Proje[]>([
         {
             id: 1,
             baslik: "TÜGVA Yurtları",
@@ -160,7 +176,7 @@ export default function TugvaAnasayfa() {
     // Popüler projeler
     const populerProjeler = projeler.filter(proje => proje.populer);
 
-    const handleBasvuru = (proje) => {
+    const handleBasvuru = (proje: Proje) => {
         if (proje.aktif) {
             window.location.href = proje.basvuru_url;
         }
@@ -247,12 +263,14 @@ export default function TugvaAnasayfa() {
                             transition: 'all 0.3s ease'
                         }}
                         onMouseEnter={(e) => {
-                            e.target.style.background = 'rgba(255, 255, 255, 0.3)';
-                            e.target.style.transform = 'translateY(-2px)';
+                            const target = e.target as HTMLButtonElement;
+                            target.style.background = 'rgba(255, 255, 255, 0.3)';
+                            target.style.transform = 'translateY(-2px)';
                         }}
                         onMouseLeave={(e) => {
-                            e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                            e.target.style.transform = 'translateY(0)';
+                            const target = e.target as HTMLButtonElement;
+                            target.style.background = 'rgba(255, 255, 255, 0.2)';
+                            target.style.transform = 'translateY(0)';
                         }}>
                             🚀 Projelerimizi Keşfet
                         </button>
@@ -268,12 +286,14 @@ export default function TugvaAnasayfa() {
                             transition: 'all 0.3s ease'
                         }}
                         onMouseEnter={(e) => {
-                            e.target.style.transform = 'translateY(-2px)';
-                            e.target.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.3)';
+                            const target = e.target as HTMLButtonElement;
+                            target.style.transform = 'translateY(-2px)';
+                            target.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.3)';
                         }}
                         onMouseLeave={(e) => {
-                            e.target.style.transform = 'translateY(0)';
-                            e.target.style.boxShadow = 'none';
+                            const target = e.target as HTMLButtonElement;
+                            target.style.transform = 'translateY(0)';
+                            target.style.boxShadow = 'none';
                         }}>
                             📞 İletişime Geç
                         </button>
@@ -494,16 +514,18 @@ export default function TugvaAnasayfa() {
                                 }}
                                 onMouseEnter={(e) => {
                                     if (seciliKategori !== kategori) {
-                                        e.target.style.background = 'linear-gradient(135deg, #08a4d4, #0892c0)';
-                                        e.target.style.color = 'white';
-                                        e.target.style.transform = 'translateY(-2px)';
+                                        const target = e.target as HTMLButtonElement;
+                                        target.style.background = 'linear-gradient(135deg, #08a4d4, #0892c0)';
+                                        target.style.color = 'white';
+                                        target.style.transform = 'translateY(-2px)';
                                     }
                                 }}
                                 onMouseLeave={(e) => {
                                     if (seciliKategori !== kategori) {
-                                        e.target.style.background = 'white';
-                                        e.target.style.color = '#08a4d4';
-                                        e.target.style.transform = 'translateY(0)';
+                                        const target = e.target as HTMLButtonElement;
+                                        target.style.background = 'white';
+                                        target.style.color = '#08a4d4';
+                                        target.style.transform = 'translateY(0)';
                                     }
                                 }}
                             >
@@ -695,14 +717,16 @@ export default function TugvaAnasayfa() {
                                                 }}
                                                 onMouseEnter={(e) => {
                                                     if (proje.aktif) {
-                                                        e.target.style.transform = 'scale(1.05)';
-                                                        e.target.style.boxShadow = `0 4px 15px ${proje.renk}50`;
+                                                        const target = e.target as HTMLButtonElement;
+                                                        target.style.transform = 'scale(1.05)';
+                                                        target.style.boxShadow = `0 4px 15px ${proje.renk}50`;
                                                     }
                                                 }}
                                                 onMouseLeave={(e) => {
                                                     if (proje.aktif) {
-                                                        e.target.style.transform = 'scale(1)';
-                                                        e.target.style.boxShadow = 'none';
+                                                        const target = e.target as HTMLButtonElement;
+                                                        target.style.transform = 'scale(1)';
+                                                        target.style.boxShadow = 'none';
                                                     }
                                                 }}
                                             >
