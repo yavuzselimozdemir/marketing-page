@@ -1,10 +1,26 @@
 import { useState, useEffect } from 'react';
 
+// Proje tipi tanımı
+interface ProjeBilgi {
+    baslik: string;
+    kisa_aciklama: string;
+    detay_aciklama: string;
+    icon: string;
+    kategoriler: string[];
+    renk: string;
+    ozellikler: string[];
+    sure: string;
+    basvuruTarihleri: string;
+    hedefKitle: string;
+    kontenjan: string;
+    lokasyon: string;
+}
+
 export default function TugvaBasvuruSayfa() {
     // URL'den proje ID'sini simüle edelim (gerçek uygulamada URL'den gelecek)
     const [projeId] = useState(4); // Seninle 40 Hadis projesi örnek olarak
     
-    const projeBilgileri = {
+    const projeBilgileri: { [key: number]: ProjeBilgi } = {
         1: {
             baslik: "TÜGVA Yurtları",
             kisa_aciklama: "Eğitim hayatını destekleyen güvenli ve konforlu yurt ortamı",
@@ -91,7 +107,7 @@ export default function TugvaBasvuruSayfa() {
                         }}>
                             <span style={{ fontSize: '3.5rem' }}>{proje.icon}</span>
                             <div>
-                                {proje.kategoriler.map(kategori => (
+                                {proje.kategoriler.map((kategori: string) => (
                                     <span key={kategori} style={{
                                         background: 'rgba(255, 255, 255, 0.2)',
                                         padding: '6px 12px',
@@ -148,12 +164,14 @@ export default function TugvaBasvuruSayfa() {
                                 boxShadow: '0 8px 25px rgba(255, 255, 255, 0.2)'
                             }}
                             onMouseEnter={(e) => {
-                                e.target.style.transform = 'translateY(-3px)';
-                                e.target.style.boxShadow = '0 12px 35px rgba(255, 255, 255, 0.3)';
+                                const target = e.target as HTMLButtonElement;
+                                target.style.transform = 'translateY(-3px)';
+                                target.style.boxShadow = '0 12px 35px rgba(255, 255, 255, 0.3)';
                             }}
                             onMouseLeave={(e) => {
-                                e.target.style.transform = 'translateY(0)';
-                                e.target.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.2)';
+                                const target = e.target as HTMLButtonElement;
+                                target.style.transform = 'translateY(0)';
+                                target.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.2)';
                             }}
                         >
                             {showForm ? '📋 Bilgileri Gör' : '🚀 Hemen Başvur'}
@@ -237,7 +255,7 @@ export default function TugvaBasvuruSayfa() {
                             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                             gap: '30px'
                         }}>
-                            {proje.ozellikler.map((ozellik, index) => (
+                            {proje.ozellikler.map((ozellik: string, index: number) => (
                                 <div
                                     key={index}
                                     style={{
@@ -250,12 +268,14 @@ export default function TugvaBasvuruSayfa() {
                                         cursor: 'pointer'
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(-5px)';
-                                        e.currentTarget.style.boxShadow = `0 15px 40px ${proje.renk}20`;
+                                        const target = e.currentTarget as HTMLDivElement;
+                                        target.style.transform = 'translateY(-5px)';
+                                        target.style.boxShadow = `0 15px 40px ${proje.renk}20`;
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                                        const target = e.currentTarget as HTMLDivElement;
+                                        target.style.transform = 'translateY(0)';
+                                        target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
                                     }}
                                 >
                                     <p style={{
@@ -335,12 +355,14 @@ export default function TugvaBasvuruSayfa() {
                                 transition: 'all 0.3s ease'
                             }}
                             onMouseEnter={(e) => {
-                                e.target.style.transform = 'translateY(-3px)';
-                                e.target.style.boxShadow = '0 10px 30px rgba(255, 255, 255, 0.3)';
+                                const target = e.target as HTMLButtonElement;
+                                target.style.transform = 'translateY(-3px)';
+                                target.style.boxShadow = '0 10px 30px rgba(255, 255, 255, 0.3)';
                             }}
                             onMouseLeave={(e) => {
-                                e.target.style.transform = 'translateY(0)';
-                                e.target.style.boxShadow = 'none';
+                                const target = e.target as HTMLButtonElement;
+                                target.style.transform = 'translateY(0)';
+                                target.style.boxShadow = 'none';
                             }}
                         >
                             🚀 Başvuru Formuna Git
@@ -468,10 +490,12 @@ export default function TugvaBasvuruSayfa() {
                                     transition: 'all 0.3s ease'
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.target.style.background = '#5a6268';
+                                    const target = e.target as HTMLButtonElement;
+                                    target.style.background = '#5a6268';
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.target.style.background = '#6c757d';
+                                    const target = e.target as HTMLButtonElement;
+                                    target.style.background = '#6c757d';
                                 }}
                             >
                                 ⬅️ Proje Detaylarına Dön
