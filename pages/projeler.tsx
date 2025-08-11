@@ -231,16 +231,18 @@ export default function Projeler() {
                                 }}
                                 onMouseEnter={(e) => {
                                     if (seciliKategori !== kategori) {
-                                        e.target.style.background = 'linear-gradient(135deg, #08a4d4, #0892c0)';
-                                        e.target.style.color = 'white';
-                                        e.target.style.transform = 'translateY(-2px)';
+                                        const target = e.target as HTMLButtonElement;
+                                        target.style.background = 'linear-gradient(135deg, #08a4d4, #0892c0)';
+                                        target.style.color = 'white';
+                                        target.style.transform = 'translateY(-2px)';
                                     }
                                 }}
                                 onMouseLeave={(e) => {
                                     if (seciliKategori !== kategori) {
-                                        e.target.style.background = 'white';
-                                        e.target.style.color = '#08a4d4';
-                                        e.target.style.transform = 'translateY(0)';
+                                        const target = e.target as HTMLButtonElement;
+                                        target.style.background = 'white';
+                                        target.style.color = '#08a4d4';
+                                        target.style.transform = 'translateY(0)';
                                     }
                                 }}
                             >
