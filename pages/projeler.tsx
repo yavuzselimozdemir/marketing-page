@@ -278,13 +278,15 @@ export default function Projeler() {
                                 }}
                                 onMouseEnter={(e) => {
                                     if (proje.aktif) {
-                                        e.currentTarget.style.transform = 'translateY(-10px)';
-                                        e.currentTarget.style.boxShadow = `0 20px 40px ${proje.renk}25`;
+                                        const target = e.currentTarget as HTMLDivElement;
+                                        target.style.transform = 'translateY(-10px)';
+                                        target.style.boxShadow = `0 20px 40px ${proje.renk}25`;
                                     }
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                                    const target = e.currentTarget as HTMLDivElement;
+                                    target.style.transform = 'translateY(0)';
+                                    target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
                                 }}
                             >
                                 {/* Üst Kısım - Renkli Header */}
@@ -367,14 +369,16 @@ export default function Projeler() {
                                         }}
                                         onMouseEnter={(e) => {
                                             if (proje.aktif) {
-                                                e.target.style.transform = 'translateY(-2px)';
-                                                e.target.style.boxShadow = `0 8px 25px ${proje.renk}40`;
+                                                const target = e.target as HTMLButtonElement;
+                                                target.style.transform = 'translateY(-2px)';
+                                                target.style.boxShadow = `0 8px 25px ${proje.renk}40`;
                                             }
                                         }}
                                         onMouseLeave={(e) => {
                                             if (proje.aktif) {
-                                                e.target.style.transform = 'translateY(0)';
-                                                e.target.style.boxShadow = 'none';
+                                                const target = e.target as HTMLButtonElement;
+                                                target.style.transform = 'translateY(0)';
+                                                target.style.boxShadow = 'none';
                                             }
                                         }}
                                     >
