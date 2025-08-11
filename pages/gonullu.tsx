@@ -12,16 +12,16 @@ export default function Gonullu() {
         <>
             <section className="hero" id="anasayfa">
                 <div className="hero-content">
-                    <h1>Gönüllü Ol, Fark Yarat!</h1>
-                    <p>TÜGVA'nın gönüllü programıyla sosyal projelerde yer al, deneyim kazan, gençliğe yön ver!</p>
-                    <a href="#iletisim" className="cta-button">Gönüllü Başvurusu Yap</a>
+                    <h1>GÃ¶nÃ¼llÃ¼ Ol, Fark Yarat!</h1>
+                    <p>TÃœGVA'nÄ±n gÃ¶nÃ¼llÃ¼ programÄ±yla sosyal projelerde yer al, deneyim kazan, genÃ§liÄŸe yÃ¶n ver!</p>
+                    <a href="#iletisim" className="cta-button">GÃ¶nÃ¼llÃ¼ BaÅŸvurusu Yap</a>
                 </div>
             </section>
 
             <main className="main-content">
                 <section className="section" id="iletisim">
-                    <h2>Gönüllü Başvuru Formu</h2>
-                    <p>Aşağıdaki formu doldurarak gönüllü programımıza başvurabilirsiniz. Ekibimiz sizinle en kısa sürede iletişime geçecektir.</p>
+                    <h2>GÃ¶nÃ¼llÃ¼ BaÅŸvuru Formu</h2>
+                    <p>AÅŸaÄŸÄ±daki formu doldurarak gÃ¶nÃ¼llÃ¼ programÄ±mÄ±za baÅŸvurabilirsiniz. Ekibimiz sizinle en kÄ±sa sÃ¼rede iletiÅŸime geÃ§ecektir.</p>
 
                     <div
                         data-form-id='FORM-ID-GONULLU'
