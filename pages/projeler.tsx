@@ -1,8 +1,21 @@
 import { useState } from 'react';
 
+// Proje tipi tanımı
+interface Proje {
+    id: number;
+    baslik: string;
+    kisa_aciklama: string;
+    detay_aciklama: string;
+    icon: string;
+    kategori: string;
+    aktif: boolean;
+    basvuru_url: string;
+    renk: string;
+}
+
 export default function Projeler() {
     // Proje verilerini state olarak tutuyoruz - kolayca yeni projeler eklenebilir
-    const [projeler] = useState([
+    const [projeler] = useState<Proje[]>([
         {
             id: 1,
             baslik: "TÜGVA Yurtları",
@@ -129,14 +142,14 @@ export default function Projeler() {
     const [seciliKategori, setSeciliKategori] = useState('Tümü');
     
     // Kategorileri otomatik olarak çıkarıyoruz
-    const kategoriler = ['Tümü', ...new Set(projeler.map(proje => proje.kategori))];
+    const kategoriler = ['Tümü', ...new Set(projeler.map((proje: Proje) => proje.kategori))];
     
     // Filtrelenmiş projeler
     const filtreliProjeler = seciliKategori === 'Tümü' 
         ? projeler 
-        : projeler.filter(proje => proje.kategori === seciliKategori);
+        : projeler.filter((proje: Proje) => proje.kategori === seciliKategori);
 
-    const handleBasvuru = (proje) => {
+    const handleBasvuru = (proje: Proje) => {
         if (proje.aktif) {
             // Gerçek uygulamada react-router kullanılabilir
             window.location.href = proje.basvuru_url;
